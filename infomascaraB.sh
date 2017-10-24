@@ -19,10 +19,16 @@ if ! [ -e ./"$nombre" ]; then
   exit 1
 fi
 
+# Comprobación de que la máscara no tiene 9 caracteres
+
 if [ ${#mascara} != 9 ]; then
   echo "Error: La máscara no tiene 9 caracteres."
   exit 1
 fi
+
+# Comprobación de que la máscara contiene caracteres erroneos
+# Se considerara erroneo un caracter valido en la mascara pero que no lo es en
+# la posicion actual (por ejemplo, w en el permiso de lectura
 
 if ! [[ "$mascara" =~ [r-][w-][-xSs][r-][w-][-xSs][-r][w-][-xTt] ]]; then
   echo "Error: La máscara posee caracteres no válidos."
